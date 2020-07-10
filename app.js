@@ -1,15 +1,15 @@
 const express = require("express");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const app = express();
-const bodyParser = require('body-parser');
-require('dotenv/config');
+const bodyParser = require("body-parser");
+require("dotenv/config");
 
 //Import routes
-const postsRoute = require('./routes/posts');
+const postsRoute = require("./routes/posts");
 
 //middleware
 app.use(bodyParser.json());
-app.use('/posts', postsRoute);
+app.use("/posts", postsRoute);
 
 //routes
 app.get("/", (req, res) => {
@@ -18,12 +18,14 @@ app.get("/", (req, res) => {
 
 //connect to db
 //mongodb + srv: //pablow:<password>@cluster0-umnaa.mongodb.net/<dbname>?retryWrites=true&w=majority
-mongoose.connect(process.env.DB_CONNECTION, { 
-  useUnifiedTopology: true, 
-  useNewUrlParser: true 
-},
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  },
   () => {
-    console.log('db connected ok');
+    console.log("db connected ok");
   }
 );
 
